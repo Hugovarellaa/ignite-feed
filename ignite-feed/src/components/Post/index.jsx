@@ -8,6 +8,10 @@ import { Comment } from "../Comment";
 import styles from "./styles.module.css";
 
 export function Post({ post }) {
+  const [comments, setComments] = useState(["Post muito bacana, hein!"]);
+  const [newCommentText, setNewCommentText] = useState("");
+  const isNewCommentEmpty = newCommentText.length === 0;
+
   const publishedAtDateFormatted = format(
     post.publishedAt,
     "dd 'de' LLL 'as' HH:mm'h'",
@@ -21,9 +25,6 @@ export function Post({ post }) {
     addSuffix: true,
   });
 
-  const [comments, setComments] = useState(["Post muito bacana, hein!"]);
-  const [newCommentText, setNewCommentText] = useState("");
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -35,6 +36,15 @@ export function Post({ post }) {
     setComments((oldState) =>
       oldState.filter((oldState) => oldState !== comment)
     );
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value);
+    event.target.setCustomValidity("");
+  }
+
+  function handleNewCommentTextInvalid() {
+    event.target.setCustomValidity("Esse campo é obrigatório");
   }
 
   return (
@@ -74,12 +84,16 @@ export function Post({ post }) {
         <strong>Deixe seu feedback</strong>
         <textarea
           value={newCommentText}
-          onChange={(event) => setNewCommentText(event.target.value)}
+          onChange={handleNewCommentChange}
           placeholder="Deixe um comentário"
+          onInvalid={handleNewCommentTextInvalid}
+          required
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isNewCommentEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
 
