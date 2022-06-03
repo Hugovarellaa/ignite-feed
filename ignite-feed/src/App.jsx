@@ -28,7 +28,7 @@ const posts = [
         content: "👉 jane.design/doctorcare",
       },
     ],
-    publishedAt: new Date("2022-06-03 20:00:00"),
+    publishedAt: new Date("2022-06-01 20:00:00"),
   },
   {
     id: 2,
