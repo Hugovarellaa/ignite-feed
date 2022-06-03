@@ -28,7 +28,13 @@ export function Post({ post }) {
     event.preventDefault();
 
     setComments((oldState) => [...oldState, newCommentText]);
-    setNewCommentText("")
+    setNewCommentText("");
+  }
+
+  function deleteComment(comment) {
+    setComments((oldState) =>
+      oldState.filter((oldState) => oldState !== comment)
+    );
   }
 
   return (
@@ -53,10 +59,10 @@ export function Post({ post }) {
       <div className={styles.content}>
         {post.content.map((line) => {
           if (line.type === "paragraph") {
-            return <p>{line.content}</p>;
+            return <p key={line.content}>{line.content}</p>;
           } else if (line.type === "link") {
             return (
-              <p>
+              <p key={line.content}>
                 <a href={line.content}>{line.content}</a>
               </p>
             );
@@ -79,7 +85,13 @@ export function Post({ post }) {
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment content={comment} />;
+          return (
+            <Comment
+              content={comment}
+              key={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>
