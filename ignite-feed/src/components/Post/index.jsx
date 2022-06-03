@@ -22,13 +22,13 @@ export function Post({ post }) {
   });
 
   const [comments, setComments] = useState(["Post muito bacana, hein!"]);
+  const [newCommentText, setNewCommentText] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    const newCommentText = event.target.comment.value
-
     setComments((oldState) => [...oldState, newCommentText]);
+    setNewCommentText("")
   }
 
   return (
@@ -66,7 +66,11 @@ export function Post({ post }) {
 
       <form className={styles.commentForm} onSubmit={handleSubmit}>
         <strong>Deixe seu feedback</strong>
-        <textarea name="comment" placeholder="Deixe um comentário" />
+        <textarea
+          value={newCommentText}
+          onChange={(event) => setNewCommentText(event.target.value)}
+          placeholder="Deixe um comentário"
+        />
 
         <footer>
           <button type="submit">Publicar</button>
