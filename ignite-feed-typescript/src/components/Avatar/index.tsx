@@ -15,3 +15,4 @@ export function Avatar({ hasBorder = true, ...rest }: AvatarProps) {
     />
   );
 }
+
