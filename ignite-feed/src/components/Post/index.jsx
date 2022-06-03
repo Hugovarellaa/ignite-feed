@@ -1,5 +1,6 @@
 import { format, formatDistanceToNow } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import { useState } from "react";
 
 import { Avatar } from "../Avatar";
 import { Comment } from "../Comment";
@@ -19,6 +20,16 @@ export function Post({ post }) {
     locale: ptBR,
     addSuffix: true,
   });
+
+  const [comments, setComments] = useState(["Post muito bacana, hein!"]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const newCommentText = event.target.comment.value
+
+    setComments((oldState) => [...oldState, newCommentText]);
+  }
 
   return (
     <article className={styles.post}>
@@ -53,9 +64,9 @@ export function Post({ post }) {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form className={styles.commentForm} onSubmit={handleSubmit}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea name="comment" placeholder="Deixe um comentário" />
 
         <footer>
           <button type="submit">Publicar</button>
@@ -63,9 +74,9 @@ export function Post({ post }) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => {
+          return <Comment content={comment} />;
+        })}
       </div>
     </article>
   );
