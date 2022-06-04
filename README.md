@@ -11,6 +11,12 @@
 
 &nbsp;
 
+## 🖼️ Template do projeto Figma
+
+- [Template do projeto original para clone](https://www.figma.com/community/file/1113573231685349036)
+
+<br/>   
+
 ## 🛠️ Tecnologias/Ferramentas ultilizadas
 
 - [React](https://pt-br.reactjs.org/E)
