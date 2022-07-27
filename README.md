@@ -10,6 +10,7 @@
 
 <br/>
 
+
 ## 📚 Informações sobre o projeto
 
 - Esse projeto foi desenvolvido durante uma Aula da rocketseat no Chapter-1 do Ignite, na plataforma Rocketseat.
