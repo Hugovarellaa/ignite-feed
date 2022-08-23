@@ -20,6 +20,7 @@
 body {
   background-color: var(--gray-900);
   color: var(--gray-300);
+  -webkit-font-smoothing: antialiased;
 }
 
 body,
@@ -27,8 +28,7 @@ input,
 select,
 button,
 textarea {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
 }
