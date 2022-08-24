@@ -5,14 +5,18 @@ import { Avatar } from "./Avatar"
 import { Comment } from "./Comment"
 import styles from "./Post.module.css"
 
+
+
 const comment = [
 
 ]
 
 export function Post({ author, content, publishedAt, id }) {
+
   const [comment, setComment] = useState([
     "Post muito bacana em!"
   ])
+
   const [newCommentText, setNewCommentText] = useState("")
 
   const dateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH':'mm'h'", {
@@ -29,9 +33,24 @@ export function Post({ author, content, publishedAt, id }) {
     setNewCommentText("")
   }
 
+  function deleteComment(commentToDelete) {
+    const commentWithoutDeletedOne = comment.filter(comment => {
+      return comment !== commentToDelete
+    })
+    setComment(commentWithoutDeletedOne)
+  }
+
   function handleNewCommentChange(event) {
     setNewCommentText(event.target.value)
+    event.target.setCustomValidity("")
   }
+
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity("Esse campo e obrigatório")
+  }
+
+  const isNewCommentInputEmpty = newCommentText.length === 0 ? true : false
+
 
   return (
     <article className={styles.postContainer}>
@@ -60,10 +79,16 @@ export function Post({ author, content, publishedAt, id }) {
 
       <form className={styles.commentForm} onSubmit={handleCreateNewComment}>
         <strong>Deixe seu comentário</strong>
-        <textarea placeholder="Deixe seu comentário" onChange={handleNewCommentChange} value={newCommentText} />
+        <textarea
+          required
+          onInvalid={handleNewCommentInvalid}
+          placeholder="Deixe seu comentário"
+          onChange={handleNewCommentChange}
+          value={newCommentText}
+        />
 
         <footer>
-          <button type="submit">
+          <button type="submit" disabled={isNewCommentInputEmpty}>
             Publicar
           </button>
         </footer>
@@ -72,7 +97,7 @@ export function Post({ author, content, publishedAt, id }) {
       <div className={styles.commentList} >
         {
           comment.map(comment => (
-            <Comment content={comment} key={comment} />
+            <Comment content={comment} key={comment} onDeleteComment={deleteComment} />
           ))
         }
       </div>
