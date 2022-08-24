@@ -40,7 +40,7 @@ const posts = [
   },
 
   {
-    id: 2,
+    id: 3,
     author: {
       avatarUrl: "http://github.com/maykbrito.png",
       name: "Mayk brito",
