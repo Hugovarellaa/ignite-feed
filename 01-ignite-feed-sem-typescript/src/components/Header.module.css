@@ -1,0 +1,20 @@
+.headerContainer {
+  background-color: var(--gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.125rem 0;
+  gap: 1rem;
+}
+
+.headerContainer img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.headerContainer span {
+  font-size: 1.625rem;
+  line-height: 41px;
+  color: var(--gray-100);
+  font-weight: bold;
+}
