@@ -94,7 +94,7 @@
 }
 
 .commentForm:focus-within footer {
-  max-height: initial;
+  max-height: none;
   visibility: visible;
 }
 
@@ -112,4 +112,8 @@
 
 .commentForm button[type="submit"]:not(:disabled):hover {
   background-color: var(--green-300);
+}
+
+.commentList {
+  margin-top: 2rem;
 }
