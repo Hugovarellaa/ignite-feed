@@ -4,6 +4,79 @@ import { Post } from "./components/Post"
 import { Sidebar } from "./components/Sidebar"
 import "./global.css"
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      name: "Hugo Alves Varella",
+      avatarUrl: "http://github.com/Hugovarellaa.png",
+      role: "Web Developer"
+    },
+    publishedAt: new Date("2022-08-30 18:00:00"),
+    content: [
+      {
+        type: "paragraph",
+        content: "Fala galeraa 👋"
+      },
+      {
+        type: "paragraph",
+        content: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+      },
+      {
+        type: "link",
+        content: " 👉 jane.design/doctorcare"
+      }
+    ]
+  },
+  {
+    id: 2,
+    author: {
+      name: "Diego Fernandes",
+      avatarUrl: "http://github.com/diego3g.png",
+      role: "@CTO Rocketseat"
+    },
+    publishedAt: new Date("2022-08-28 20:00:00"),
+    content: [
+      {
+        type: "paragraph",
+        content: "Fala Dev"
+      },
+      {
+        type: "paragraph",
+        content: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+      },
+      {
+        type: "link",
+        content: " 👉 jane.design/doctorcare"
+      }
+    ]
+  },
+  {
+    id: 3,
+    author: {
+      name: "Mayk brito",
+      avatarUrl: "http://github.com/maykbrito.png",
+      role: "@Education Rocketseat",
+    },
+    publishedAt: new Date("2022-08-20 10:00:00"),
+    content: [
+      {
+        type: "paragraph",
+        content: "Fala galeraa 👋"
+      },
+      {
+        type: "paragraph",
+        content: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+      },
+      {
+        type: "link",
+        content: " 👉 jane.design/doctorcare"
+      }
+    ]
+  }
+]
+
+
 export function App() {
   return (
     <div>
@@ -12,10 +85,11 @@ export function App() {
       <div className={styles.appContainer}>
         <Sidebar />
         <main>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {
+            posts.map(post => (
+              <Post author={post.author} content={post.content} publishedAt={post.publishedAt} key={post.id} />
+            ))
+          }
         </main>
       </div>
 
