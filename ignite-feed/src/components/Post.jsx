@@ -21,6 +21,13 @@ export function Post() {
           <a href="#"> 👉 jane.design/doctorcare</a>
         </p>
       </div>
+
+
+      <form className={styles.commentForm}>
+        <strong>Deixe seu feedback</strong>
+        <textarea placeholder="Deixe um comentário" />
+        <button type="submit">Publicar</button>
+      </form>
     </article>
   )
 }
