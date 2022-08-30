@@ -1,5 +1,6 @@
 import { format, formatDistanceToNow } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
+import { useState } from "react"
 import { Avatar } from "./Avatar"
 import { Comment } from "./Comment"
 import styles from "./Post.module.css"
@@ -13,6 +14,28 @@ export function Post({ author, content, publishedAt }) {
     locale: ptBR,
     addSuffix: true
   })
+
+  const [comments, setComments] = useState([])
+  const [newComment, setNewComment] = useState("")
+
+  function handleCreateNewComment() {
+    setNewComment(event.target.value)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    setComments(oldState => [...oldState, newComment])
+    setNewComment("")
+
+  }
+
+  function deleteComment(commentText) {
+    const deletedComment = comments.filter(comment => {
+      return comment !== commentText
+    })
+    setComments(deletedComment)
+  }
+
 
   return (
     <article className={styles.postContainer}>
@@ -40,16 +63,20 @@ export function Post({ author, content, publishedAt }) {
       </div>
 
 
-      <form className={styles.commentForm}>
+      <form className={styles.commentForm} onSubmit={handleSubmit}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea placeholder="Deixe um comentário" value={newComment} onChange={handleCreateNewComment} />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
+        {
+          comments.map(comment => (
+            <Comment key={comment} comment={comment} onDeleteComment={deleteComment} />
+          ))
+        }
 
       </div>
     </article>
