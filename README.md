@@ -5,7 +5,7 @@
 &nbsp;
 
 <div>
-  <img src="./ignite-feed-typescript/src/assets/images/capa.svg">
+  <img src="./Capa.png">
 </div>
 
 <br/>
